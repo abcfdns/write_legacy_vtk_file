@@ -38,8 +38,8 @@ void CreateVTKUnstructuredGrid2d(struct Data2D data, char *filename) {
         }
     }
     fprintf(fp_out, "CELL_TYPES %d\n", n_cells);
-    for (int ix = 0; ix < nx-1; ++ix) {
-        for (int iy = 0; iy < ny-1; ++iy) {
+    for (int iy = 0; iy < ny-1; ++iy) {
+        for (int ix = 0; ix < nx-1; ++ix) {
             fprintf(fp_out, "9\n");
         }
     }
@@ -48,12 +48,10 @@ void CreateVTKUnstructuredGrid2d(struct Data2D data, char *filename) {
     int index;
     double *ux = data.ux;
     double *uy = data.uy;
-    for (int ix = 0; ix < nx; ++ix) {
-        for (int iy = 0; iy < ny; ++iy) {
+    for (int iy = 0; iy < ny; ++iy) {
+        for (int ix = 0; ix < nx; ++ix) {
             index = nx * iy + ix;
             fprintf(fp_out, "%f %f %f\n", ux[index], uy[index], 0.0);
-            //printf("%f %f %f\n", ux[index], uy[index], 0.0);
-
         }
     }
     fclose(fp_out);
